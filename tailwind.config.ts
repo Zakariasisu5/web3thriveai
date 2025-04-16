@@ -52,6 +52,13 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				web3: {
+					primary: '#1a56db',
+					secondary: '#0ea5e9',
+					accent: '#06b6d4',
+					dark: '#0f172a',
+					light: '#f0f9ff'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
