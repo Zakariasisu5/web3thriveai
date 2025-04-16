@@ -1,9 +1,25 @@
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Briefcase, Code, FileText, PenTool, Search, Sparkles } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const MarketplacePreview = () => {
+  const { toast } = useToast();
+  
+  const handleBrowseJobs = () => {
+    toast({
+      title: "Coming Soon",
+      description: "The job board will be available soon!",
+    });
+  };
+
+  const handleApplyNow = () => {
+    toast({
+      title: "Coming Soon",
+      description: "Job applications will be available soon!",
+    });
+  };
+
   const jobs = [
     {
       id: 1,
@@ -54,7 +70,7 @@ const MarketplacePreview = () => {
           </div>
           
           <div className="hidden md:block">
-            <Button className="gradient-bg border-0">
+            <Button className="gradient-bg border-0" onClick={handleBrowseJobs}>
               Browse All Jobs
               <ArrowRight size={16} className="ml-2" />
             </Button>
@@ -138,7 +154,7 @@ const MarketplacePreview = () => {
                 <div className="text-sm font-medium">
                   Budget: <span className="text-web3-primary">{job.budget}</span>
                 </div>
-                <Button>
+                <Button onClick={handleApplyNow}>
                   Apply Now
                 </Button>
               </div>
@@ -147,7 +163,7 @@ const MarketplacePreview = () => {
         </div>
         
         <div className="text-center mt-10">
-          <Button className="gradient-bg border-0 md:hidden inline-flex">
+          <Button className="gradient-bg border-0 md:hidden inline-flex" onClick={handleBrowseJobs}>
             View All Jobs
           </Button>
         </div>

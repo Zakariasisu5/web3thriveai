@@ -1,13 +1,14 @@
-
 import { useState } from "react";
 import { ArrowRight, Bot, FileText, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useToast } from "@/hooks/use-toast";
 
 const AIAssistant = () => {
   const [input, setInput] = useState("");
   const [activeTab, setActiveTab] = useState("career");
+  const { toast } = useToast();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -15,14 +16,17 @@ const AIAssistant = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real implementation, this would send the message to an AI service
+    toast({
+      title: "Message sent",
+      description: "We'll get back to you shortly with personalized assistance.",
+    });
     setInput("");
   };
 
   const assistantTypes = [
     {
       id: "career",
-      name: "Career Copilot",
+      name: "Web3Thrive Guide",
       icon: <Bot className="text-white" size={20} />,
       description: "Career guidance and skill development pathways",
       examples: [
@@ -71,7 +75,7 @@ const AIAssistant = () => {
             </div>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Your AI Freelance Assistant
+            Your Web3Thrive Assistant
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Get 24/7 assistance with proposals, skill development, and career guidance
@@ -128,7 +132,7 @@ const AIAssistant = () => {
                 <ol className="list-decimal list-inside mt-2 space-y-2">
                   <li>Build a strong portfolio with 3-5 projects showcasing your skills</li>
                   <li>Learn React and API integration - highly in demand right now</li>
-                  <li>Create profiles on SkillVerse and 1-2 other platforms</li>
+                  <li>Create profiles on Web3Thrive and 1-2 other platforms</li>
                   <li>Start with smaller projects to build your reputation</li>
                 </ol>
                 <p className="mt-2">

@@ -1,8 +1,24 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Bot, Shield, Zap } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const HeroSection = () => {
+  const { toast } = useToast();
+
+  const handleFindOpportunities = () => {
+    toast({
+      title: "Coming Soon",
+      description: "We're currently building this feature. Stay tuned!",
+    });
+  };
+
+  const handlePostJob = () => {
+    toast({
+      title: "Coming Soon",
+      description: "Job posting will be available soon!",
+    });
+  };
+
   return (
     <div className="py-16 px-4 md:py-24 overflow-hidden">
       <div className="container max-w-6xl">
@@ -12,7 +28,7 @@ const HeroSection = () => {
               Next-Gen Freelance Platform
             </div>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-              Web3 Freelancing with <span className="gradient-text">AI Assistance</span>
+              Web3 Freelancing with <span className="gradient-text">Web3Thrive</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
               Unlock your potential with blockchain-secured jobs, AI-powered career guidance, and 
@@ -20,11 +36,11 @@ const HeroSection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Button size="lg" className="gradient-bg border-0">
+              <Button size="lg" className="gradient-bg border-0" onClick={handleFindOpportunities}>
                 Find Opportunities
                 <ArrowRight size={16} className="ml-2" />
               </Button>
-              <Button size="lg" variant="outline">
+              <Button size="lg" variant="outline" onClick={handlePostJob}>
                 Post a Job
               </Button>
             </div>
@@ -53,8 +69,8 @@ const HeroSection = () => {
                   <Bot className="text-white" size={24} />
                 </div>
                 <div>
-                  <h3 className="font-semibold">AI Career Copilot</h3>
-                  <p className="text-sm text-muted-foreground">Your personal career assistant</p>
+                  <h3 className="font-semibold">Web3Thrive Assistant</h3>
+                  <p className="text-sm text-muted-foreground">Your personal career advisor</p>
                 </div>
               </div>
               
