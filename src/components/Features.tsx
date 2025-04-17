@@ -88,7 +88,7 @@ const Features = () => {
             The Future of Freelancing
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            SkillVerse combines blockchain security with AI assistance to create
+            Web3thrive combines blockchain security with AI assistance to create
             the most powerful freelance platform ever built.
           </p>
         </div>
