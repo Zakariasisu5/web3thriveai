@@ -9,9 +9,9 @@ const Footer = () => {
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="h-8 w-8 rounded-full gradient-bg flex items-center justify-center">
-                <span className="font-bold text-white text-lg">SV</span>
+                <span className="font-bold text-white text-lg">W3</span>
               </div>
-              <span className="font-bold text-xl">SkillVerse</span>
+              <span className="font-bold text-xl">Web3Thrive</span>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
               A Web3-enabled freelance platform with AI assistance, empowering the next generation of digital workers.
@@ -38,67 +38,6 @@ const Footer = () => {
             </div>
           </div>
           
-          <div>
-            <h4 className="font-semibold mb-4">Platform</h4>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Find Work
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Post a Job
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                  AI Assistant
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Skills Portal
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                  NFT Badges
-                </a>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="font-semibold mb-4">Resources</h4>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Blockchain Basics
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Freelance Guide
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Web3 Glossary
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Smart Contracts
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Documentation
-                </a>
-              </li>
-            </ul>
-          </div>
           
           <div>
             <h4 className="font-semibold mb-4">Company</h4>
@@ -134,7 +73,7 @@ const Footer = () => {
         
         <div className="border-t border-border/20 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground mb-4 md:mb-0">
-            &copy; 2025 SkillVerse. All rights reserved.
+            &copy; 2025 Web3thrive. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm">
             <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
