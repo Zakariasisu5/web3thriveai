@@ -61,7 +61,40 @@ const HeroSection = () => {
             </div>
           </div>
           
-         
+          <div className="relative">
+            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-web3-primary/10 rounded-full blur-3xl"></div>
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 max-w-md mx-auto">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="h-12 w-12 rounded-full gradient-bg flex items-center justify-center">
+                  <Bot className="text-white" size={24} />
+                </div>
+                <div>
+                  
+                  <p className="text-sm text-muted-foreground">Your personal career advisor</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4 mb-6">
+                <div className="bg-muted p-3 rounded-lg text-sm">
+                  What skills should I focus on for blockchain development?
+                </div>
+                <div className="bg-web3-light text-web3-dark p-3 rounded-lg text-sm">
+                  Based on current market trends, I recommend focusing on Solidity, 
+                  Web3.js, and smart contract security. There's high demand for developers 
+                  who understand DeFi protocols. Would you like me to suggest some starter projects?
+                </div>
+              </div>
+              
+              <div className="relative">
+                <input
+                  type="text"
+                  className="w-full rounded-lg border border-input px-3 py-2 text-sm"
+                  placeholder="Ask me anything about your career..."
+                />
+                <Button size="sm" className="absolute right-1 top-1 h-7 w-7 p-0">
+                  <ArrowRight size={14} />
+                </Button>
+              </div>
             </div>
           </div>
         </div>
