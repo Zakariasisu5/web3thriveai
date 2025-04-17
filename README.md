@@ -1,4 +1,4 @@
-## Welcome to web3thrive
+## Welcome to web3thrive Ai
 
 https://web3thriveai.vercel.app/
 
