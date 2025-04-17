@@ -2,21 +2,23 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Briefcase, Code, FileText, PenTool, Search, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 const MarketplacePreview = () => {
   const { toast } = useToast();
   
   const handleBrowseJobs = () => {
+    // Keep toast for tracking clicks, but now we use Link component for navigation
     toast({
-      title: "Coming Soon",
-      description: "The job board will be available soon!",
+      title: "Browsing Jobs",
+      description: "Taking you to the job board.",
     });
   };
 
-  const handleApplyNow = () => {
+  const handleApplyNow = (jobTitle: string) => {
     toast({
-      title: "Coming Soon",
-      description: "Job applications will be available soon!",
+      title: "Application Started",
+      description: `You're applying for: ${jobTitle}`,
     });
   };
 
@@ -70,9 +72,11 @@ const MarketplacePreview = () => {
           </div>
           
           <div className="hidden md:block">
-            <Button className="gradient-bg border-0" onClick={handleBrowseJobs}>
-              Browse All Jobs
-              <ArrowRight size={16} className="ml-2" />
+            <Button className="gradient-bg border-0" onClick={handleBrowseJobs} asChild>
+              <Link to="/find-work">
+                Browse All Jobs
+                <ArrowRight size={16} className="ml-2" />
+              </Link>
             </Button>
           </div>
         </div>
@@ -154,8 +158,13 @@ const MarketplacePreview = () => {
                 <div className="text-sm font-medium">
                   Budget: <span className="text-web3-primary">{job.budget}</span>
                 </div>
-                <Button onClick={handleApplyNow}>
-                  Apply Now
+                <Button 
+                  onClick={() => handleApplyNow(job.title)} 
+                  asChild
+                >
+                  <Link to={`/find-work?job=${job.id}`}>
+                    Apply Now
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -163,8 +172,10 @@ const MarketplacePreview = () => {
         </div>
         
         <div className="text-center mt-10">
-          <Button className="gradient-bg border-0 md:hidden inline-flex" onClick={handleBrowseJobs}>
-            View All Jobs
+          <Button className="gradient-bg border-0 md:hidden inline-flex" asChild>
+            <Link to="/find-work" onClick={handleBrowseJobs}>
+              View All Jobs
+            </Link>
           </Button>
         </div>
       </div>

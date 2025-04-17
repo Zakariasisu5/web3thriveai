@@ -1,9 +1,8 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { Bot, Send, Code, FileSearch, BrainCircuit, Loader2 } from "lucide-react";
+import { Bot, Send, Code, FileSearch, BrainCircuit, Loader2, RefreshCw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 
@@ -13,8 +12,10 @@ const AIAssistance = () => {
     {role: "assistant", content: "How can I assist you with your Web3 development today?"}
   ]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showRefresh, setShowRefresh] = useState(false);
   const { toast } = useToast();
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const features = [
     {
@@ -42,6 +43,15 @@ const AIAssistance = () => {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  // Handle textarea resize
+  useEffect(() => {
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = "auto";
+      textarea.style.height = `${Math.min(textarea.scrollHeight, 150)}px`;
+    }
+  }, [prompt]);
 
   // Generate more comprehensive responses
   const generateResponse = (userPrompt: string) => {
@@ -305,6 +315,7 @@ Would you like more information on implementing governance for your project?`;
 Feel free to ask specific questions about any Web3 development topic. For code examples, let me know your preferred language or framework, and I'll tailor my response accordingly.`;
   };
 
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -329,6 +340,11 @@ Feel free to ask specific questions about any Web3 development topic. For code e
         // Add AI response
         setMessages(prev => [...prev, {role: "assistant", content: response}]);
         setIsLoading(false);
+        
+        // Show refresh button after a few messages
+        if (messages.length >= 4) {
+          setShowRefresh(true);
+        }
       }, 1000);
     } catch (error) {
       console.error("Error processing request:", error);
@@ -338,7 +354,37 @@ Feel free to ask specific questions about any Web3 development topic. For code e
       });
       setIsLoading(false);
     }
+    
+    // Focus back on textarea after submission
+    setTimeout(() => {
+      textareaRef.current?.focus();
+    }, 100);
   };
+  
+  // Reset conversation
+  const handleReset = () => {
+    setMessages([
+      {role: "assistant", content: "How can I assist you with your Web3 development today?"}
+    ]);
+    setShowRefresh(false);
+  };
+  
+  // Handle keyboard shortcuts
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    // Submit on Ctrl+Enter or Cmd+Enter
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  };
+
+  // Predefined questions that users can click
+  const sampleQuestions = [
+    "How do I create a simple ERC-20 token?",
+    "What are best practices for smart contract security?",
+    "Explain gas optimization in Solidity",
+    "How do I connect my dApp to MetaMask?"
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -362,7 +408,26 @@ Feel free to ask specific questions about any Web3 development topic. For code e
         </div>
 
         <Card className="p-6 max-w-3xl mx-auto">
-          <div className="flex flex-col gap-4 mb-4 max-h-[500px] overflow-y-auto">
+          <div className="flex justify-between items-center mb-4">
+            <div className="flex items-center gap-2">
+              <Bot className="w-5 h-5 text-web3-primary" />
+              <h3 className="font-medium">Web3 AI Assistant</h3>
+            </div>
+            
+            {showRefresh && (
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={handleReset} 
+                className="flex gap-1.5 items-center text-xs"
+              >
+                <RefreshCw className="h-3 w-3" />
+                New Chat
+              </Button>
+            )}
+          </div>
+          
+          <div className="flex flex-col gap-4 mb-4 max-h-[500px] overflow-y-auto p-1">
             {messages.map((message, index) => (
               <div key={index} className="flex items-start gap-4">
                 {message.role === "assistant" ? (
@@ -371,7 +436,9 @@ Feel free to ask specific questions about any Web3 development topic. For code e
                 <div className={`flex-1 p-4 rounded-lg ${
                   message.role === "assistant" ? "bg-muted" : "bg-web3-light/20 ml-auto"
                 }`}>
-                  <div className="whitespace-pre-line">{message.content}</div>
+                  <div className="whitespace-pre-line prose prose-sm max-w-none">
+                    {message.content}
+                  </div>
                 </div>
                 {message.role === "user" ? (
                   <div className="w-8 h-8 bg-web3-primary rounded-full flex items-center justify-center mt-2 shrink-0">
@@ -394,24 +461,45 @@ Feel free to ask specific questions about any Web3 development topic. For code e
             <div ref={messagesEndRef} />
           </div>
           
+          <div className="mb-4">
+            <p className="text-xs text-muted-foreground mb-2">Try asking:</p>
+            <div className="flex flex-wrap gap-2">
+              {sampleQuestions.map((question, index) => (
+                <Button 
+                  key={index} 
+                  variant="outline" 
+                  size="sm" 
+                  className="text-xs h-auto py-1"
+                  onClick={() => setPrompt(question)}
+                >
+                  {question}
+                </Button>
+              ))}
+            </div>
+          </div>
+          
           <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-4">
             <Textarea 
+              ref={textareaRef}
               placeholder="Ask about smart contracts, security, or request code samples..."
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              className="flex-1"
-              rows={3}
+              onKeyDown={handleKeyDown}
+              className="flex-1 min-h-[80px] resize-none"
               disabled={isLoading}
             />
             <Button 
               type="submit" 
               className="md:mt-auto md:self-end"
-              disabled={isLoading}
+              disabled={isLoading || !prompt.trim()}
             >
               {isLoading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Send className="w-4 h-4 mr-2" />}
               Send
             </Button>
           </form>
+          <div className="text-xs text-muted-foreground text-center mt-3">
+            Press Ctrl+Enter to send
+          </div>
         </Card>
       </div>
     </div>
