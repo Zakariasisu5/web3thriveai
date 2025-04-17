@@ -40,7 +40,7 @@ const Features = () => {
     },
     {
       icon: <Bot className="text-white" size={22} />,
-      title: "AI Career Copilot",
+      title: "AI Career Web3ThriveAi",
       description: "Personalized guidance for skill development and job hunting based on market trends."
     },
     {
