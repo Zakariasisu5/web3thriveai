@@ -3,8 +3,18 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Users, Shield, Zap, Award } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import { useToast } from "@/hooks/use-toast";
 
 const ForClients = () => {
+  const { toast } = useToast();
+  
+  const handlePostProject = () => {
+    toast({
+      title: "Coming Soon",
+      description: "Project posting will be available soon!",
+    });
+  };
+  
   const benefits = [
     {
       icon: <Users className="w-8 h-8 text-web3-primary" />,
@@ -48,7 +58,7 @@ const ForClients = () => {
           ))}
         </div>
         <div className="text-center">
-          <Button size="lg">
+          <Button size="lg" onClick={handlePostProject}>
             Post a Project
           </Button>
         </div>

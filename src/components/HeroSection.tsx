@@ -1,14 +1,16 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Bot, Shield, Zap } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   const { toast } = useToast();
 
   const handleFindOpportunities = () => {
     toast({
-      title: "Coming Soon",
-      description: "We're currently building this feature. Stay tuned!",
+      title: "Browsing Opportunities",
+      description: "Taking you to available jobs.",
     });
   };
 
@@ -36,9 +38,11 @@ const HeroSection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Button size="lg" className="gradient-bg border-0" onClick={handleFindOpportunities}>
-                Find Opportunities
-                <ArrowRight size={16} className="ml-2" />
+              <Button size="lg" className="gradient-bg border-0" onClick={handleFindOpportunities} asChild>
+                <Link to="/find-work">
+                  Find Opportunities
+                  <ArrowRight size={16} className="ml-2" />
+                </Link>
               </Button>
               <Button size="lg" variant="outline" onClick={handlePostJob}>
                 Post a Job
@@ -69,7 +73,7 @@ const HeroSection = () => {
                   <Bot className="text-white" size={24} />
                 </div>
                 <div>
-                  
+                  <h3 className="font-medium">Web3Thrive Assistant</h3>
                   <p className="text-sm text-muted-foreground">Your personal career advisor</p>
                 </div>
               </div>
