@@ -1,7 +1,7 @@
 
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-
+//import { Button } from "@/components/ui/button";
+//import { ArrowRight } from "lucide-react";
+/*
 const CTASection = () => {
   return (
     <div className="py-20 gradient-bg text-white">
