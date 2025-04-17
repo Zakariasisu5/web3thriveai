@@ -1,13 +1,13 @@
 
-//import { Button } from "@/components/ui/button";
-//import { ArrowRight } from "lucide-react";
-/*
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+
 const CTASection = () => {
   return (
     <div className="py-20 gradient-bg text-white">
       <div className="container text-center max-w-4xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
-          Start Your Web3 Freelance Journey Today
+          
         </h2>
         <p className="text-lg mb-8 text-white/80">
           Join thousands of freelancers leveraging blockchain technology and AI assistance 
@@ -27,4 +27,4 @@ const CTASection = () => {
   );
 };
 
-//export default CTASection;
+export default CTASection;
