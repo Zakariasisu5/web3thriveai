@@ -14,3 +14,4 @@ This project is a cutting-edge freelance platform tailored for Africa-based free
 
 This platform fosters growth, trust, and innovation in the freelancing ecosystem.  
 
+ 
