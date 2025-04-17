@@ -69,7 +69,7 @@ const HeroSection = () => {
                   <Bot className="text-white" size={24} />
                 </div>
                 <div>
-                  <h3 className="font-semibold">Web3Thrive Assistant</h3>
+                  
                   <p className="text-sm text-muted-foreground">Your personal career advisor</p>
                 </div>
               </div>
